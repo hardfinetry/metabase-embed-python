@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Embedded Metabase Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- React & ReactDOM (from CDN) -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Inject iframe URL -->
+    <script>
+      const METABASE_IFRAME_URL = "{{ iframe_url | safe }}";
+    </script>
+
+    <!-- RAW BLOCK START -->
+    {% raw %}
+    <script type="text/babel">
+      function MetabaseDashboard() {
+        return (
+          <div style={{ padding: "20px", fontFamily: "sans-serif" }}>
+            <h1>Embedded Metabase Dashboard</h1>
+            <iframe
+              src={METABASE_IFRAME_URL}
+              frameBorder="0"
+              width="1000"
+              height="800"
+              allowFullScreen
+              style={{
+                borderRadius: "8px",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
+              }}
+            />
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<MetabaseDashboard />);
+    </script>
+    {% endraw %}
+    <!-- RAW BLOCK END -->
+
+  </body>
+</html>
