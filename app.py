@@ -8,7 +8,7 @@ app = Flask(__name__)
 # --- Metabase config ---
 METABASE_SITE_URL = "http://metabase-enterprise.fcs1hk.com"
 METABASE_SECRET_KEY = "e98da16a0f37180b293bcf3008d89ccb43d8097b27e93a925cef896647799e46"
-DASHBOARD_ID = 34  # your dashboard id
+DASHBOARD_ID = 34  # dashboard id
 
 
 def build_iframe_url():
@@ -24,7 +24,7 @@ def build_iframe_url():
     payload = {
         "resource": {"dashboard": DASHBOARD_ID},
         "params": {
-            "account_uuid": account_uuid_param  # must match your SQL/locked param
+            "account_uuid": account_uuid_param  # must match SQL/locked param
         },
         "exp": int(time.time()) + 10 * 60,  # 10 minutes
     }
