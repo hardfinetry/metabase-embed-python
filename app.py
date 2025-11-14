@@ -25,6 +25,7 @@ def build_iframe_url():
         "resource": {"dashboard": DASHBOARD_ID},
         "params": {
             "account_uuid": account_uuid_param  # must match SQL/locked param
+            # NEED TO ADD PROPERTY UUID
         },
         "exp": int(time.time()) + 10 * 60,  # 10 minutes
     }
