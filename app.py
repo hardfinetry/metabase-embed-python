@@ -41,25 +41,21 @@ def build_iframe_url() -> str:
     # 2) Read property UUIDs
     property_uuids = read_uuid_list("property_uuid_list.txt")
     
-    # 32 fix: If user has NO access at all, force "no results"
+    # 3) If user has NO access at all, force "no results"
     if not account_uuids and not property_uuids:
         account_uuids = ["__NO_ACCESS__"]
         property_uuids = ["__NO_ACCESS__"]
 
-    # 3) Always pass arrays (no more CSV fallback)
-    account_param_value = account_uuids if account_uuids else []
-    property_param_value = property_uuids if property_uuids else []
-
     print("[DEBUG] DASHBOARD_ID:", DASHBOARD_ID)
-    print("[DEBUG] account_uuid param for JWT:", account_param_value)
-    print("[DEBUG] property_uuid param for JWT:", property_param_value)
+    print("[DEBUG] account_uuid param for JWT:", account_uuids)
+    print("[DEBUG] property_uuid param for JWT:", property_uuids)
 
     # 4) Build JWT payload
     payload = {
         "resource": {"dashboard": DASHBOARD_ID},
         "params": {
-            "account_uuid": account_param_value,
-            "property_uuid": property_param_value,
+            "account_uuid": account_uuids,
+            "property_uuid": property_uuids,
         },
         "exp": int(time.time()) + 10 * 60,  # 10 minutes
     }
