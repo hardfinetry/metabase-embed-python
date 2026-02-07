@@ -40,6 +40,11 @@ def build_iframe_url() -> str:
 
     # 2) Read property UUIDs
     property_uuids = read_uuid_list("property_uuid_list.txt")
+    
+    # 32 fix: If user has NO access at all, force "no results"
+    if not account_uuids and not property_uuids:
+        account_uuids = ["__NO_ACCESS__"]
+        property_uuids = ["__NO_ACCESS__"]
 
     # 3) Always pass arrays (no more CSV fallback)
     account_param_value = account_uuids if account_uuids else []
