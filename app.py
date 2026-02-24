@@ -8,7 +8,7 @@ app = Flask(__name__)
 # --- Metabase config ---
 METABASE_SITE_URL = "http://metabase-enterprise.fcs1hk.com"
 METABASE_SECRET_KEY = "e98da16a0f37180b293bcf3008d89ccb43d8097b27e93a925cef896647799e46"
-DASHBOARD_ID = 41  # dashboard id
+DASHBOARD_ID = 6  # dashboard id
 
 
 def read_uuid_list(filename: str):
